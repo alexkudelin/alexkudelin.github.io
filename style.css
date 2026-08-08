@@ -226,6 +226,8 @@ section { margin-bottom: 56px; }
   text-decoration: none;
 }
 
+.hero-link svg, .project-link svg { flex-shrink: 0; }
+
 /* ── Section headers ── */
 .section-label {
   font-size: 11px;
@@ -424,6 +426,70 @@ section { margin-bottom: 56px; }
   margin-bottom: 3px;
 }
 
+/* ── Projects ── */
+.projects-list { display: flex; flex-direction: column; gap: 0; }
+
+.project-item {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.project-item:first-child { border-top: 1px solid var(--border); }
+
+.project-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.project-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.project-role {
+  font-size: 12px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.project-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 10px;
+}
+
+.project-item .tags { margin-bottom: 10px; }
+
+.project-links { display: flex; gap: 8px; flex-wrap: wrap; }
+
+.project-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--tag-bg);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  transition: color 0.15s, border-color 0.15s, background 0.15s;
+  text-decoration: none;
+}
+
+.project-link:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--bg);
+  text-decoration: none;
+}
+
 /* ── Skills ── */
 .skills-grid { display: flex; flex-direction: column; gap: 14px; }
 
@@ -531,6 +597,7 @@ footer {
   /* Preserve background colors */
   .tag,
   .hero-link,
+  .project-link,
   .exp-sub,
   .exp-initiatives,
   .exp-achievements,
@@ -560,6 +627,11 @@ footer {
 
   .edu-item { padding: 10px 0; }
 
+  .project-item { padding: 10px 0; }
+  .project-desc { font-size: 12px; margin-bottom: 6px; }
+  .project-item .tags { margin-bottom: 6px; }
+  .project-link { font-size: 12px; padding: 3px 8px; }
+
   .about-text { font-size: 13px; line-height: 1.55; }
   .about-text p + p { margin-top: 8px; }
 
@@ -568,6 +640,7 @@ footer {
 
   /* Avoid breaking small blocks across pages; exp-item allowed to break */
   .edu-item,
+  .project-item,
   .exp-sub,
   .exp-initiatives,
   .exp-achievements,
@@ -584,4 +657,5 @@ footer {
   .skill-group { flex-direction: column; gap: 6px; }
   .skill-group-label { min-width: unset; }
   .exp-header { flex-direction: column; gap: 2px; }
+  .project-header { flex-direction: column; align-items: flex-start; gap: 2px; }
 }

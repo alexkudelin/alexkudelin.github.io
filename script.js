@@ -1,3 +1,14 @@
+// ── Icons ──
+// Single source of truth: render() rewrites link contents, so icons live here,
+// not as static markup in index.html.
+const ICONS = {
+  email: '<svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>',
+  telegram: '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>',
+  github: '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>',
+  linkedin: '<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>',
+  website: '<svg width="13" height="13" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M3.6 9h16.8M3.6 15h16.8M12 3a15 15 0 010 18 15 15 0 010-18z"/></svg>',
+};
+
 const STRINGS = {
   ru: {
     navBrand: 'Алексей Куделин',
@@ -31,7 +42,7 @@ const STRINGS = {
             <li>Отвечаю за реагирование на инциденты и высокую доступность сервисов</li>
             <li>Провёл ~20 технических интервью</li>
             <li>Онбордил новых инженеров в команду: погружение в кодовую базу, процессы и инструменты</li>
-            <li>Веду технические синки и архитектурные встречи в кросс-функциональной команде из 12 человек. Также поддерживаю кросс-командную коммуникацию на стыках доменов, провожу консультации по интеграциям с сервисами команды</li>
+            <li>Веду технические синки и архитектурные встречи в кросс-функциональной команде из 12 человек. Также поддерживаю кросс-командную коммуникацию на стыках доменов, провожу консультации по интеграциям с сервисами команды. Замещал тимлида</li>
           </ul>
         `,
         initiatives: `
@@ -46,7 +57,7 @@ const STRINGS = {
         `,
         achievements: `
           <ul>
-            <li>Реализовал с нуля мультиканальный сервис уведомлений: email (~10 000 писем/сутки) и корпоративный мессенджер (для систем мониторинга и информационных уведомлений в бизнес-процессах). Event-driven архитектура на Kafka; система подписок на доменные события с условиями по атрибутам (AND/OR, операторы сравнения) и UI-редактор шаблонов писем сократили TTM новых сценариев рассылок с 3–4 дней до 1 рабочего дня — высвободив ресурсы QA и разработчиков</li>
+            <li>Реализовал с нуля мультиканальный сервис уведомлений: email (~10 000 писем/сутки) и корпоративный мессенджер (для систем мониторинга и информационных уведомлений в бизнес-процессах). Event-driven архитектура на Kafka; система подписок на доменные события с условиями по атрибутам (AND/OR, операторы сравнения) и UI-редактор шаблонов писем сократили TTM новых сценариев рассылок с 3–4 дней до 3 часов — высвободив ресурсы QA и разработчиков</li>
             <li>Серия оптимизаций производительности сервисов: анализ логов, бизнес-процессов и EXPLAIN ANALYZE позволяли точечно устранять бутылочные горлышки — с ощутимой экономией человеко-часов для внутренних подразделений</li>
             <li>Стандартизировал процессы разработки: единый стек инструментов (Poetry, Ruff и др.), Чистая архитектура, несколько внутренних open-source библиотек с общими паттернами (обёртки над confluent-kafka и др.) — к разработке и ревью подключились коллеги из двух смежных Python-команд</li>
           </ul>
@@ -135,6 +146,28 @@ const STRINGS = {
         `,
       },
     ],
+    projectsLabel: 'Проекты',
+    projects: [
+      {
+        name: 'Станем Ближе',
+        role: 'CTO · продукт',
+        desc: 'Telegram Mini App для развития долгосрочных отношений и эмоциональной близости: психологические игры, тесты и практики для пар, друзей и индивидуальной работы.',
+        tags: ['Telegram Mini Apps', 'Python', 'TypeScript', 'Kubernetes'],
+        links: [
+          { label: 'getcloser.ru', url: 'https://getcloser.ru', icon: 'website' },
+          { label: '@get_closer_bot', url: 'https://t.me/get_closer_bot', icon: 'telegram' },
+        ],
+      },
+      {
+        name: 'gost-pfx-divider',
+        role: 'Open source · pet-проект',
+        desc: 'CLI-утилита, которая разбирает PKCS#12-контейнеры российских УЦ на приватный ключ и сертификат в обычном PEM. Штатный OpenSSL такие файлы не открывает: внутри — ГОСТ Р 34.10-2012/34.11-2012, снаружи — устаревшее шифрование RC2-CBC. Docker-образ с OpenSSL 3.5 и gost-engine делает разбор одной командой, не трогая OpenSSL на хосте; дальше с ключами работают штатные средства.',
+        tags: ['Docker', 'OpenSSL', 'gost-engine', 'Make', 'Shell'],
+        links: [
+          { label: 'GitHub', url: 'https://github.com/alexkudelin/gost-pfx-divider', icon: 'github' },
+        ],
+      },
+    ],
     skillsLabel: 'Навыки',
     skillGroups: [
       { label: 'Основной стек', tags: ['Python', 'SQL', 'Django', 'FastAPI', 'Litestar', 'SQLAlchemy', 'Docker', 'Kubernetes', 'Helm', 'Vault', 'Kafka', 'Redis', 'PostgreSQL', 'Grafana', 'Linux'] },
@@ -198,7 +231,7 @@ const STRINGS = {
             <li>Responsible for incident response and high availability of production services</li>
             <li>Conducted ~20 engineering interviews</li>
             <li>Onboarded new engineers to the team: codebase walkthroughs, processes, and tooling</li>
-            <li>Run technical syncs and architectural meetings in a 12-person cross-functional team. Support cross-team communication at domain boundaries, consult on integrations with team services</li>
+            <li>Run technical syncs and architectural meetings in a 12-person cross-functional team. Support cross-team communication at domain boundaries, consult on integrations with team services. Covered for the team lead</li>
           </ul>
         `,
         initiatives: `
@@ -213,7 +246,7 @@ const STRINGS = {
         `,
         achievements: `
           <ul>
-            <li>Built a multi-channel notification service from scratch: email (~10,000/day) and corporate messenger (for monitoring systems and business-process alerts). Event-driven via Kafka; a subscription engine with attribute-based filtering (AND/OR, comparison operators) and a UI template editor cut TTM for new notification scenarios from 3–4 days to 1 working day — freeing up QA and engineering capacity</li>
+            <li>Built a multi-channel notification service from scratch: email (~10,000/day) and corporate messenger (for monitoring systems and business-process alerts). Event-driven via Kafka; a subscription engine with attribute-based filtering (AND/OR, comparison operators) and a UI template editor cut TTM for new notification scenarios from 3–4 days to 3 hours — freeing up QA and engineering capacity</li>
             <li>Multiple rounds of service performance optimization: log analysis, business-process review, and EXPLAIN ANALYZE to pinpoint bottlenecks — delivering measurable man-hour savings for internal teams</li>
             <li>Standardized development practices: unified toolchain (Poetry, Ruff, etc.), Clean Architecture, and several internal open-source libraries capturing common patterns (wrappers over confluent-kafka and others) — co-developed and reviewed with engineers from two adjacent Python teams</li>
           </ul>
@@ -302,6 +335,28 @@ const STRINGS = {
         `,
       },
     ],
+    projectsLabel: 'Projects',
+    projects: [
+      {
+        name: 'getcloser.ru',
+        role: 'CTO · product',
+        desc: 'Telegram Mini App for building long-term relationships and emotional closeness: psychological games, tests, and practices for couples, friends, and solo work.',
+        tags: ['Telegram Mini Apps', 'Python', 'TypeScript', 'Kubernetes'],
+        links: [
+          { label: 'getcloser.ru', url: 'https://getcloser.ru', icon: 'website' },
+          { label: '@get_closer_bot', url: 'https://t.me/get_closer_bot', icon: 'telegram' },
+        ],
+      },
+      {
+        name: 'gost-pfx-divider',
+        role: 'Open source · side project',
+        desc: 'A CLI tool that splits PKCS#12 containers issued by Russian CAs into a private key and a certificate in plain PEM. Stock OpenSSL cannot open these files: GOST R 34.10-2012/34.11-2012 inside, legacy RC2-CBC encryption outside. A Docker image bundling OpenSSL 3.5 and gost-engine does the split in one command without touching the host OpenSSL — after that, standard tooling works.',
+        tags: ['Docker', 'OpenSSL', 'gost-engine', 'Make', 'Shell'],
+        links: [
+          { label: 'GitHub', url: 'https://github.com/alexkudelin/gost-pfx-divider', icon: 'github' },
+        ],
+      },
+    ],
     skillsLabel: 'Skills',
     skillGroups: [
       { label: 'Primary stack', tags: ['Python', 'SQL', 'Django', 'FastAPI', 'Litestar', 'SQLAlchemy', 'Docker', 'Kubernetes', 'Helm', 'Vault', 'Kafka', 'Redis', 'PostgreSQL', 'Grafana', 'Linux'] },
@@ -358,11 +413,16 @@ function render() {
   document.getElementById('hero-title').textContent = s.heroTitle;
   document.getElementById('hero-location').textContent = s.heroLocation;
   document.getElementById('hero-availability').textContent = s.heroAvailability;
-  document.getElementById('link-email').textContent = s.heroLinks.email;
-  document.getElementById('link-telegram').textContent = s.heroLinks.telegram;
-  document.getElementById('link-github').textContent = s.heroLinks.github;
-  document.getElementById('link-linkedin').textContent = s.heroLinks.linkedin;
-  document.getElementById('link-getcloser').textContent = s.heroLinks.getcloser;
+  const heroLinkIcons = {
+    email: ICONS.email,
+    telegram: ICONS.telegram,
+    github: ICONS.github,
+    linkedin: ICONS.linkedin,
+    getcloser: ICONS.website,
+  };
+  Object.entries(heroLinkIcons).forEach(([key, icon]) => {
+    document.getElementById(`link-${key}`).innerHTML = `${icon}<span>${s.heroLinks[key]}</span>`;
+  });
 
   // About
   document.getElementById('about-label').textContent = s.aboutLabel;
@@ -394,6 +454,22 @@ function render() {
           ${sub.achievements ? `<div class="exp-achievements"><div class="exp-achievements-label">${s.achievementsLabel}</div>${sub.achievements}</div>` : ''}
         </div>
       `).join('') : ''}
+    </div>
+  `).join('');
+
+  // Projects
+  document.getElementById('projects-label').textContent = s.projectsLabel;
+  document.getElementById('projects-list').innerHTML = s.projects.map(p => `
+    <div class="project-item">
+      <div class="project-header">
+        <div class="project-name">${p.name}</div>
+        <span class="project-role">${p.role}</span>
+      </div>
+      <div class="project-desc">${p.desc}</div>
+      <div class="tags">${p.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>
+      <div class="project-links">${p.links.map(l =>
+        `<a class="project-link" href="${l.url}" target="_blank" rel="noopener">${ICONS[l.icon] || ''}<span>${l.label}</span></a>`
+      ).join('')}</div>
     </div>
   `).join('');
 
